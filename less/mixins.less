@@ -1,1 +1,48 @@
 // Mixins in here
+.buttons(@color: @button-bg) {
+  width: 80%;
+  background: @color;
+  font-size: 1.6rem;
+  color: @main-bg;
+  border-radius: 1rem;
+  padding: 1rem;
+  text-align: center;
+  &:hover {
+    .flash-once(
+      @duration: 0.5s,
+      @primary-color: @main-bg,
+      @secondary-color: @color
+    );
+  }
+}
+
+.column-padding() {
+  padding: 0 5%;
+}
+
+.content-column(@direction: column) {
+  flex-direction: @direction;
+  justify-content: center;
+  align-items: center;
+  .text-content,
+  .img-content {
+    width: 100%;
+  }
+  .img-content {
+    text-align: center;
+  }
+}
+
+.flash-once(@duration: 1s, @primary-color: @white, @secondary-color: @shark) {
+  @keyframes blinkOnce {
+    0% {
+      background: @primary-color;
+      color: @secondary-color;
+    }
+    100% {
+      background: @secondary-color;
+      color: @primary-color;
+    }
+  }
+  animation: blinkOnce @duration linear;
+}
